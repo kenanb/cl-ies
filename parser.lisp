@@ -61,7 +61,7 @@
 (defun parse-keywords (stream)
   (loop with keyword-list
         for line = (read-line stream)
-        for (key-raw value) = (match-keyword line)
+        for (key-raw  value) = (match-keyword line)
         for key = key-raw then (if (eq key-raw :more) last-key key-raw)
         for last-key = key
         while key
@@ -136,7 +136,7 @@
 		    ((string= header "LM-63-1995") 'lm-63-95)
 		    ((string= header "LM-63-2002") 'lm-63-02)
 		    (t (warn "IES file is malformed or {IES Standard Revision}>2002 compliant and not yet supported! Assuming LM-63-2002.") 'lm-63-02))))
-      (apply #'make-instance (append (list 'ies
+      (apply #'make-instance (append (list iesna
 					   :file (file-namestring filepath)
 					   :path (directory-namestring filepath))
 				     (parse-info stream iesna first-line)
